@@ -4,7 +4,7 @@ import { PageWrapper } from "components/atoms/PageWrapper"
 import { ActionButton } from "components/atoms/ActionButton"
 
 const ChargeHub = () => (
-  <PageWrapper fullScreen>
+  <PageWrapper fullScreen justify>
     <ActionButton>Comprar</ActionButton>
   </PageWrapper>
 )

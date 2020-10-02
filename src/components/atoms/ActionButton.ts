@@ -1,7 +1,23 @@
 import styled from 'styled-components'
+
 import { pixelToRem } from 'utils/pixelToRem'
+import { BLUE_FANCY, WHITE } from 'constants/colors'
 
 export const ActionButton = styled.button`
-  height: ${pixelToRem(10)};
-  width: ${pixelToRem(30)};
+  align-self: center;
+  background: ${ BLUE_FANCY };
+  border: none;
+  border-radius ${pixelToRem(15)};
+  color: ${ WHITE };
+  cursor: pointer;
+  font-size: ${pixelToRem(17)};
+  font-weight: 600;
+  height: ${pixelToRem(50)};
+  justify-self: center;
+  transition: .2s ease-out;
+  width: ${pixelToRem(150)};
+
+  &:hover {
+    scale: 1.02;
+  } 
 `
