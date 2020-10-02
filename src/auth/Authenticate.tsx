@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { useHistory } from "react-router-dom"
 
 import { getStoredAuthToken, storeAuthToken } from "utils/authToken"
+import { PageLoader } from "components/molecules/PageLoader"
 
 const Authenticate = () => {
   const history = useHistory()
@@ -22,7 +23,7 @@ const Authenticate = () => {
     }
   }, [history])
 
-  return <div>Loading</div>
+  return <PageLoader />
 }
 
 export default Authenticate
