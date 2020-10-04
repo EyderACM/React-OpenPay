@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect } from "react"
 
 const useScript = (url: string) => {
   useEffect(() => {
-    const script = document.createElement('script')
+    const script = document.createElement("script")
     script.src = url
-    script.type = 'text/javascript'
+    script.type = "text/javascript"
     script.async = true
 
     document.body.appendChild(script)
@@ -13,6 +13,6 @@ const useScript = (url: string) => {
       document.body.removeChild(script)
     }
   }, [url])
-} 
+}
 
 export default useScript
