@@ -7,7 +7,7 @@ export const ActionButton = styled.button`
   align-self: center;
   background: ${ BLUE_FANCY };
   border: none;
-  border-radius ${pixelToRem(15)};
+  border-radius: ${pixelToRem(15)};
   color: ${ WHITE };
   cursor: pointer;
   font-size: ${pixelToRem(17)};
