@@ -1,12 +1,23 @@
 import React from "react"
+import TokenService from "services/TokenService"
+import ICard from "interfaces/ICard"
 import { removeStoredAuthToken } from "shared/utils/authToken"
 
 import { PageWrapper } from "components/atoms/PageWrapper"
 import { ActionButton } from "components/atoms/ActionButton"
 
 const ChargeHub = () => {
+  const alertSuccess = () => {
+    alert("success")
+  }
+
+  const alertError = () => {
+    alert("error")
+  }
+
   const openPaymentModal = () => {
-    alert(process.env.REACT_APP_MERCHANT_ID)
+    const card = {} as ICard
+    TokenService.generateNewToken(card, alertSuccess, alertError)
     removeStoredAuthToken()
   }
 
