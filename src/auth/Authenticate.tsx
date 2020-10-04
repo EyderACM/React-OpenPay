@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { useHistory } from "react-router-dom"
+import { uniqueId } from "lodash"
 
 import { getStoredAuthToken, storeAuthToken } from "utils/authToken"
 import { PageLoader } from "components/molecules/PageLoader"
@@ -10,7 +11,7 @@ const Authenticate = () => {
   useEffect(() => {
     const createSession = async () => {
       try {
-        const authToken = "123"
+        const authToken = uniqueId("openpay-")
         storeAuthToken(authToken)
         history.push("/charge")
       } catch (error) {
