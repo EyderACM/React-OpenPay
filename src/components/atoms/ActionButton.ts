@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import { pixelToRem } from 'utils/pixelToRem'
-import { BLUE_FANCY, WHITE } from 'constants/colors'
+import { pixelToRem } from 'shared/utils/pixelToRem'
+import { BLUE_FANCY, WHITE } from 'shared/constants/colors'
 
 export const ActionButton = styled.button`
   align-self: center;

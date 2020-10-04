@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import { uniqueId } from "lodash"
 
-import { getStoredAuthToken, storeAuthToken } from "utils/authToken"
+import { getStoredAuthToken, storeAuthToken } from "shared/utils/authToken"
 import { PageLoader } from "components/molecules/PageLoader"
 
 const Authenticate = () => {
