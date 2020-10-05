@@ -77,7 +77,9 @@ export const TransactionModal = ({
             <Column>
               Número de tarjeta
               <input
-                type="number"
+                pattern="[0-9]+"
+                maxLength={19}
+                type="text"
                 placeholder="0000 0000 0000 0000"
                 name="card_number"
                 onChange={(e) => handleInputChange(e)}
@@ -89,6 +91,7 @@ export const TransactionModal = ({
                   Fecha de expiración
                   <Row>
                     <ShortInput
+                      maxLength={2}
                       type="text"
                       placeholder="00"
                       name="expiration_month"
@@ -96,6 +99,7 @@ export const TransactionModal = ({
                       onChange={(e) => handleInputChange(e)}
                     />
                     <ShortInput
+                      maxLength={2}
                       type="text"
                       placeholder="00"
                       name="expiration_year"
@@ -107,6 +111,7 @@ export const TransactionModal = ({
                 <Column>
                   CVC/CVV
                   <input
+                    maxLength={3}
                     type="text"
                     placeholder="000"
                     name="cvv2"
