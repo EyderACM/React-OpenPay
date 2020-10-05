@@ -1,6 +1,7 @@
 import React from "react"
 import oxxoLogo from "img/oxxo-logo.svg"
 import creditCards from "img/cards.png"
+import EPaymentTypes from "interfaces/EPaymentTypes"
 
 import { TransactionModalContainer } from "../atoms/TransactionModalContainer"
 import { TransactionModalWrapper } from "../atoms/TransactionModalWrapper"
@@ -15,11 +16,13 @@ import { Row } from "../tools/Row"
 interface ITransactionModal {
   visible: boolean
   handleInputChange: Function
+  checked: EPaymentTypes
   handlePaymentTypeChange: Function
 }
 
 export const TransactionModal = ({
   visible,
+  checked,
   handleInputChange,
   handlePaymentTypeChange,
 }: ITransactionModal) => {
@@ -30,12 +33,19 @@ export const TransactionModal = ({
           <PaymentTypeContainer>
             <FormTitle>Método de pago</FormTitle>
             <RadioButtonWrapper>
-              <FormInput type="radio" value="oxxo" name="payment" />
+              <FormInput
+                onChange={handlePaymentTypeChange}
+                checked={checked === EPaymentTypes.OXXO}
+                type="radio"
+                value="oxxo"
+                name="payment"
+              />
               <ResizableImg src={oxxoLogo} alt="oxxo logo" width={40} />
             </RadioButtonWrapper>
             <RadioButtonWrapper>
               <FormInput
-                checked={true}
+                onChange={handlePaymentTypeChange}
+                checked={checked === EPaymentTypes.CREDIT_CARD}
                 type="radio"
                 value="creditCard"
                 name="payment"
@@ -50,7 +60,6 @@ export const TransactionModal = ({
               </Row>
             </RadioButtonWrapper>
           </PaymentTypeContainer>
-          asdasd
         </FormWrapper>
         <div>dssds</div>
       </TransactionModalContainer>
