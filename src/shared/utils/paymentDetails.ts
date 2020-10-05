@@ -4,7 +4,7 @@ import {
 } from "shared/utils/authToken"
 
 
-export const defaultPaymentDetails = {
+export const defaultPaymentDetails = (customerFirstName: string, customerLastName: string) => ({
   method: "card",
     amount: 1,
     currency: "MXN",
@@ -12,12 +12,12 @@ export const defaultPaymentDetails = {
     order_id: uuidv4(),
     device_session_id: getStoredAuthToken() || "",
     customer: {
-      name: "Edgar Alberto",
-      last_name: "Aguilar Moguel",
+      name: customerFirstName,
+      last_name: customerLastName,
       phone_number: "9992594157",
       email: "eyderacm@gmail.com",
     },
-}
+})
 
 export const auctionDetails = ({
   payConcept = 'Realización de un evento de subasta',

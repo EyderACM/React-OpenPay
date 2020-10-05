@@ -71,7 +71,10 @@ const ChargeHub = () => {
     tokenGeneratedHandler()
     const chargeData = {
       source_id: res.data.id,
-      ...defaultPaymentDetails,
+      ...defaultPaymentDetails(
+        formData.holder_name.split(" ")[0],
+        formData.holder_name.split(" ")[2]
+      ),
     }
     removeStoredAuthToken()
     PaymentService.makePayment(
