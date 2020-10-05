@@ -2,6 +2,7 @@ import React from "react"
 
 import { TransactionModalWrapper } from "../atoms/TransactionModalWrapper"
 import { TransactionModalContainer } from "../atoms/TransactionModalContainer"
+import { FormWrapper } from "../atoms/FormWrapper"
 
 interface ITransactionModal {
   visible: boolean
@@ -10,7 +11,10 @@ interface ITransactionModal {
 export const TransactionModal = ({ visible }: ITransactionModal) => {
   return (
     <TransactionModalWrapper display={visible}>
-      <TransactionModalContainer>probando</TransactionModalContainer>
+      <TransactionModalContainer>
+        <FormWrapper></FormWrapper>
+        <div>dssds</div>
+      </TransactionModalContainer>
     </TransactionModalWrapper>
   )
 }

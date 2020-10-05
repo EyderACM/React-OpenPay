@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useHistory } from "react-router-dom"
-import { uniqueId } from "lodash"
+import OpenPayM from "shared/modules/OpenPay"
 
 import { getStoredAuthToken, storeAuthToken } from "shared/utils/authToken"
 import { PageLoader } from "components/molecules/PageLoader"
@@ -11,10 +11,11 @@ const Authenticate = () => {
   useEffect(() => {
     const createSession = async () => {
       try {
-        const authToken = uniqueId("openpay-")
+        const authToken = OpenPayM.deviceData.setup("form-charge")
         storeAuthToken(authToken)
         history.push("/charge")
       } catch (error) {
+        console.log(OpenPayM)
         alert("there was an error")
       }
     }

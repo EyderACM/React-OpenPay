@@ -3,6 +3,6 @@ import { pixelToRem } from 'shared/utils/pixelToRem'
 
 export const TransactionModalContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: ${pixelToRem(20)}
 `
