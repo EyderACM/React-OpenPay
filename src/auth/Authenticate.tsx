@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import OpenPayM from "shared/modules/OpenPay"
+import toast from "shared/utils/toast"
 
 import { getStoredAuthToken, storeAuthToken } from "shared/utils/authToken"
 import { PageLoader } from "components/molecules/PageLoader"
@@ -13,9 +14,10 @@ const Authenticate = () => {
       try {
         const authToken = OpenPayM.deviceData.setup("form-charge")
         storeAuthToken(authToken)
+        toast.success("Autenticado correctamente")
         history.push("/charge")
       } catch (error) {
-        console.log(OpenPayM)
+        toast.error("Fallo en la autenticación")
         alert("there was an error")
       }
     }

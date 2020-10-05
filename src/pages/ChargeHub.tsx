@@ -1,6 +1,11 @@
 import React, { useState } from "react"
 import EPaymentTypes from "interfaces/EPaymentTypes"
 import { auctionDetails } from "shared/utils/paymentDetails"
+import toast from "shared/utils/toast"
+import {
+  getStoredAuthToken,
+  removeStoredAuthToken,
+} from "shared/utils/authToken"
 
 import { TransactionModal } from "components/molecules/TransactionModal"
 import { PageWrapper } from "components/atoms/PageWrapper"
@@ -40,7 +45,12 @@ const ChargeHub = () => {
   }
 
   const openPaymentModal = () => {
+    if (!getStoredAuthToken()) {
+      toast.error("No estás auténticado")
+      return
+    }
     setModalOpen(!modalOpen)
+    removeStoredAuthToken()
   }
 
   return (
