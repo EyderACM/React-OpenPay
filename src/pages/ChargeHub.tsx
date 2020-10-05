@@ -23,6 +23,10 @@ const ChargeHub = () => {
     })
   }
 
+  const handleFormPaymentTypeChange = (event: any) => {
+    setPaymentType(event.target.value)
+  }
+
   const openPaymentModal = () => {
     setModalOpen(!modalOpen)
   }
@@ -33,6 +37,7 @@ const ChargeHub = () => {
       <TransactionModal
         visible={modalOpen}
         handleInputChange={handleFormInputChange}
+        handlePaymentTypeChange={handleFormPaymentTypeChange}
       />
     </PageWrapper>
   )

@@ -6,5 +6,6 @@ export const RadioButtonWrapper = styled.div`
   display: flex;
   flex-direction: row;
   height: ${pixelToRem(60)};
-  justify-content: center;
+  justify-content: flex-start;
+  width: 100%;
 `
