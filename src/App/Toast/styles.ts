@@ -8,16 +8,16 @@ interface IStyledToast {
 export const Container = styled.div`
   z-index: 1001;
   position: fixed;
-  right: 30px;
-  top: 50px;
+  right: ${pixelToRem(30)};
+  top: ${pixelToRem(50)};
 `;
 
 export const StyledToast = styled.div<IStyledToast>`
   position: relative;
-  margin-bottom: 5px;
-  width: 300px;
-  padding: 15px 20px;
-  border-radius: 3px;
+  margin-bottom: ${pixelToRem(5)};
+  width: ${pixelToRem(300)};
+  padding: ${pixelToRem(15)} ${pixelToRem(20)};
+  border-radius: ${pixelToRem(3)};
   color: #fff;
   ${({type}) => type && `background: ${type}`};
   cursor: pointer;
@@ -46,13 +46,13 @@ export const CloseIcon = styled.img`
 `;
 
 export const Title = styled.div`
-  padding-right: 22px;
+  padding-right: ${pixelToRem(22)};
   font-size: ${pixelToRem(15)};
   font-weight: 600;
 `;
 
 export const Message = styled.div`
-  padding: 8px 10px 0 0;
+  padding: ${pixelToRem(8)} ${pixelToRem(10)} 0 0;
   white-space: pre-wrap;
   font-size: ${pixelToRem(14)};
 `;

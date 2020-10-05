@@ -38,7 +38,7 @@ export const TransactionModal = ({
   handlePaymentTypeChange,
 }: ITransactionModal) => {
   return (
-    <TransactionModalWrapper display={visible}>
+    <TransactionModalWrapper displayModal={visible}>
       <TransactionModalContainer>
         <FormWrapper>
           <PaymentTypeContainer>
@@ -106,7 +106,7 @@ export const TransactionModal = ({
                       onChange={(e) => handleInputChange(e)}
                     />
                     <ShortInput
-                      maxLength={2}
+                      maxLength={4}
                       type="text"
                       placeholder="00"
                       name="expiration_year"
@@ -132,13 +132,13 @@ export const TransactionModal = ({
         <DetailWrapper>
           {detailCollection.map(({ detailName, detailValue }: any) => {
             return (
-              <DetailSection>
+              <DetailSection key={detailName}>
                 <DetailText>{detailName}</DetailText>
                 <DetailDescription>{detailValue}</DetailDescription>
               </DetailSection>
             )
           })}
-          <PaymentButton>Pagar</PaymentButton>
+          <PaymentButton onClick={handleFormSubmit}>Pagar</PaymentButton>
         </DetailWrapper>
       </TransactionModalContainer>
     </TransactionModalWrapper>

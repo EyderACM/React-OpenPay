@@ -3,7 +3,7 @@ import { WHITE } from 'shared/constants/colors'
 import { pixelToRem } from 'shared/utils/pixelToRem'
 
 interface ITransactionModalWrapper {
-  display: boolean
+  displayModal: boolean
 }
 
 export const TransactionModalWrapper = styled.div<ITransactionModalWrapper>`
@@ -11,9 +11,9 @@ export const TransactionModalWrapper = styled.div<ITransactionModalWrapper>`
   background: ${WHITE};
   border-radius: ${pixelToRem(15)};
   height: ${pixelToRem(550)};
-  opacity: ${({display}) => !display ? '0' : '1'};
+  opacity: ${({displayModal}) => !displayModal ? '0' : '1'};
   position: absolute;
   transition: .4s all;
-  visibility: ${({display}) => !display ? 'hidden' : 'visible'};
+  visibility: ${({displayModal}) => !displayModal ? 'hidden' : 'visible'};
   width: ${pixelToRem(1000)};
 `
