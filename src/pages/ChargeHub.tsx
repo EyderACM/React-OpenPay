@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import EPaymentTypes from "interfaces/EPaymentTypes"
+import { auctionDetails } from "shared/utils/paymentDetails"
 
 import { TransactionModal } from "components/molecules/TransactionModal"
 import { PageWrapper } from "components/atoms/PageWrapper"
@@ -7,6 +8,7 @@ import { ActionButton } from "components/atoms/ActionButton"
 
 const ChargeHub = () => {
   const [modalOpen, setModalOpen] = useState(false)
+  const [transactionData] = useState(auctionDetails({}))
   const [paymentType, setPaymentType] = useState(EPaymentTypes.CREDIT_CARD)
   const [formData, setformData] = useState({
     cardHolder: "",
@@ -47,6 +49,7 @@ const ChargeHub = () => {
       <TransactionModal
         visible={modalOpen}
         checked={paymentType}
+        detailCollection={transactionData}
         handleFormSubmit={handleFormSubmit}
         handleInputChange={handleFormInputChange}
         handlePaymentTypeChange={handleFormPaymentTypeChange}

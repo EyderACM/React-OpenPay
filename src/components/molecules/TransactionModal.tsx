@@ -7,9 +7,13 @@ import { TransactionModalContainer } from "../atoms/TransactionModalContainer"
 import { TransactionModalWrapper } from "../atoms/TransactionModalWrapper"
 import { PaymentTypeContainer } from "../atoms/PaymentTypeContainer"
 import { RadioButtonWrapper } from "../atoms/RadioButtonWrapper"
+import { DetailDescription } from "../atoms/DetailDescription"
+import { DetailWrapper } from "../atoms/DetailWrapper"
+import { DetailSection } from "../atoms/DetailSection"
 import { ResizableImg } from "../atoms/ResizableImg"
 import { FormWrapper } from "../atoms/FormWrapper"
 import { ShortInput } from "../atoms/ShortInput"
+import { DetailText } from "../atoms/DetailText"
 import { FormTitle } from "../atoms/FormTitle"
 import { FormInput } from "../atoms/FormInput"
 import { Column } from "../tools/Column"
@@ -18,6 +22,7 @@ import { Row } from "../tools/Row"
 interface ITransactionModal {
   visible: boolean
   checked: EPaymentTypes
+  detailCollection: any
   handleFormSubmit: any
   handleInputChange: Function
   handlePaymentTypeChange: Function
@@ -28,6 +33,7 @@ export const TransactionModal = ({
   checked,
   handleInputChange,
   handleFormSubmit,
+  detailCollection,
   handlePaymentTypeChange,
 }: ITransactionModal) => {
   return (
@@ -122,7 +128,16 @@ export const TransactionModal = ({
             </Column>
           </form>
         </FormWrapper>
-        <div>dssds</div>
+        <DetailWrapper>
+          {detailCollection.map(({ detailName, detailValue }: any) => {
+            return (
+              <DetailSection>
+                <DetailText>{detailName}</DetailText>
+                <DetailDescription>{detailValue}</DetailDescription>
+              </DetailSection>
+            )
+          })}
+        </DetailWrapper>
       </TransactionModalContainer>
     </TransactionModalWrapper>
   )
