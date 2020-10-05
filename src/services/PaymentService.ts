@@ -4,7 +4,7 @@ import axios from 'axios'
 const PaymentService = () => {
   const makePayment = (chargeData: ICharge,  onSuccessCallback: Function, onFailCallback: Function) => {
     axios({
-      url: `${process.env.REACT_APP_BASE_URL}api/posts/charge/post`,
+      url: `${process.env.REACT_APP_BASE_URL || "http://localhost:3001"}api/posts/charge/post`,
       method: 'POST',
       data: chargeData,
       headers: {

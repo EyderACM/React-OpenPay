@@ -1,4 +1,23 @@
 import { v4 as uuidv4 } from 'uuid'
+import {
+  getStoredAuthToken,
+} from "shared/utils/authToken"
+
+
+export const defaultPaymentDetails = {
+  method: "card",
+    amount: 1,
+    currency: "MXN",
+    description: "Transacción bancaria",
+    order_id: uuidv4(),
+    device_session_id: getStoredAuthToken() || "",
+    customer: {
+      name: "Edgar Alberto",
+      last_name: "Aguilar Moguel",
+      phone_number: "9992594157",
+      email: "eyderacm@gmail.com",
+    },
+}
 
 export const auctionDetails = ({
   payConcept = 'Realización de un evento de subasta',

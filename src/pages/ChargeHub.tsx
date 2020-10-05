@@ -1,9 +1,20 @@
 import React, { useState } from "react"
+import PaymentService from "services/PaymentService"
+import TokenService from "services/TokenService"
+
 import EPaymentTypes from "interfaces/EPaymentTypes"
-import IChargeForm from "interfaces/IChargeForm"
 import toast from "shared/utils/toast"
 import { chargeFormValidator } from "shared/utils/formValidator"
-import { auctionDetails } from "shared/utils/paymentDetails"
+import {
+  tokenGeneratedHandler,
+  tokenFailedHandler,
+  succesfulPayment,
+  failedPayment,
+} from "shared/utils/errorHandler"
+import {
+  auctionDetails,
+  defaultPaymentDetails,
+} from "shared/utils/paymentDetails"
 import {
   getStoredAuthToken,
   removeStoredAuthToken,
@@ -12,16 +23,16 @@ import {
 import { TransactionModal } from "components/molecules/TransactionModal"
 import { PageWrapper } from "components/atoms/PageWrapper"
 import { ActionButton } from "components/atoms/ActionButton"
+import ICard from "interfaces/ICard"
 
 const ChargeHub = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const [transactionData] = useState(auctionDetails({}))
   const [paymentType, setPaymentType] = useState(EPaymentTypes.CREDIT_CARD)
-  const [formData, setformData] = useState<IChargeForm>({
-    card_holder: "",
+  const [formData, setformData] = useState<ICard>({
+    holder_name: "",
     expiration_month: 0,
     expiration_year: 0,
-    phone_number: "",
     card_number: 0,
     cvv2: 0,
   })
@@ -46,7 +57,31 @@ const ChargeHub = () => {
       })
       return
     }
-    toast.success("payed")
+    toast.success("Datos correctos")
+    TokenService.generateNewToken(
+      formData,
+      (res: any) => {
+        handleTokenCreation(res)
+      },
+      tokenFailedHandler
+    )
+  }
+
+  const handleTokenCreation = (res: any) => {
+    tokenGeneratedHandler()
+    const chargeData = {
+      source_id: res.data.id,
+      ...defaultPaymentDetails,
+    }
+    removeStoredAuthToken()
+    PaymentService.makePayment(
+      chargeData,
+      () =>
+        succesfulPayment(() => {
+          setModalOpen(false)
+        }),
+      failedPayment
+    )
   }
 
   const handleFormPaymentTypeChange = (event: any) => {
@@ -59,7 +94,6 @@ const ChargeHub = () => {
       return
     }
     setModalOpen(!modalOpen)
-    removeStoredAuthToken()
   }
 
   return (
