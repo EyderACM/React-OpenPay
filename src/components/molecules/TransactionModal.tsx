@@ -10,6 +10,7 @@ import { RadioButtonWrapper } from "../atoms/RadioButtonWrapper"
 import { DetailDescription } from "../atoms/DetailDescription"
 import { DetailWrapper } from "../atoms/DetailWrapper"
 import { DetailSection } from "../atoms/DetailSection"
+import { PaymentButton } from "../atoms/PaymentButton"
 import { ResizableImg } from "../atoms/ResizableImg"
 import { FormWrapper } from "../atoms/FormWrapper"
 import { ShortInput } from "../atoms/ShortInput"
@@ -137,6 +138,7 @@ export const TransactionModal = ({
               </DetailSection>
             )
           })}
+          <PaymentButton>Pagar</PaymentButton>
         </DetailWrapper>
       </TransactionModalContainer>
     </TransactionModalWrapper>
