@@ -7,16 +7,19 @@ import { TransactionModalContainer } from "../atoms/TransactionModalContainer"
 import { TransactionModalWrapper } from "../atoms/TransactionModalWrapper"
 import { PaymentTypeContainer } from "../atoms/PaymentTypeContainer"
 import { RadioButtonWrapper } from "../atoms/RadioButtonWrapper"
-import { FormInput } from "../atoms/FormInput"
 import { ResizableImg } from "../atoms/ResizableImg"
 import { FormWrapper } from "../atoms/FormWrapper"
+import { ShortInput } from "../atoms/ShortInput"
 import { FormTitle } from "../atoms/FormTitle"
+import { FormInput } from "../atoms/FormInput"
+import { Column } from "../tools/Column"
 import { Row } from "../tools/Row"
 
 interface ITransactionModal {
   visible: boolean
-  handleInputChange: Function
   checked: EPaymentTypes
+  handleFormSubmit: any
+  handleInputChange: Function
   handlePaymentTypeChange: Function
 }
 
@@ -24,6 +27,7 @@ export const TransactionModal = ({
   visible,
   checked,
   handleInputChange,
+  handleFormSubmit,
   handlePaymentTypeChange,
 }: ITransactionModal) => {
   return (
@@ -51,7 +55,7 @@ export const TransactionModal = ({
                 name="payment"
               />
               <Row>
-                <p>Credit or debit card</p>
+                <p>Tarjeta de Crédito o Débito</p>
                 <ResizableImg
                   src={creditCards}
                   alt="credit card logos"
@@ -60,6 +64,58 @@ export const TransactionModal = ({
               </Row>
             </RadioButtonWrapper>
           </PaymentTypeContainer>
+          <form onSubmit={handleFormSubmit}>
+            <Column>
+              Nombre del titular
+              <input
+                type="text"
+                placeholder="Tu nombre"
+                name="holder_name"
+                onChange={(e) => handleInputChange(e)}
+              />
+            </Column>
+            <Column>
+              Número de tarjeta
+              <input
+                type="number"
+                placeholder="0000 0000 0000 0000"
+                name="card_number"
+                onChange={(e) => handleInputChange(e)}
+              />
+            </Column>
+            <Column>
+              <Row>
+                <Column>
+                  Fecha de expiración
+                  <Row>
+                    <ShortInput
+                      type="text"
+                      placeholder="00"
+                      name="expiration_month"
+                      width={40}
+                      onChange={(e) => handleInputChange(e)}
+                    />
+                    <ShortInput
+                      type="text"
+                      placeholder="00"
+                      name="expiration_year"
+                      width={40}
+                      onChange={(e) => handleInputChange(e)}
+                    />
+                  </Row>
+                </Column>
+                <Column>
+                  CVC/CVV
+                  <input
+                    type="text"
+                    placeholder="000"
+                    name="cvv2"
+                    onChange={(e) => handleInputChange(e)}
+                  />
+                </Column>
+              </Row>
+            </Column>
+          </form>
         </FormWrapper>
         <div>dssds</div>
       </TransactionModalContainer>

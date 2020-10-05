@@ -17,6 +17,11 @@ const ChargeHub = () => {
     cvc: 0,
   })
 
+  const determinePaymentType = (value: string) =>
+    value === EPaymentTypes.OXXO
+      ? EPaymentTypes.OXXO
+      : EPaymentTypes.CREDIT_CARD
+
   const handleFormInputChange = (event: any) => {
     setformData({
       ...formData,
@@ -24,10 +29,9 @@ const ChargeHub = () => {
     })
   }
 
-  const determinePaymentType = (value: string) =>
-    value === EPaymentTypes.OXXO
-      ? EPaymentTypes.OXXO
-      : EPaymentTypes.CREDIT_CARD
+  const handleFormSubmit = (event: any) => {
+    console.log("submited")
+  }
 
   const handleFormPaymentTypeChange = (event: any) => {
     setPaymentType(determinePaymentType(event.target.value))
@@ -43,6 +47,7 @@ const ChargeHub = () => {
       <TransactionModal
         visible={modalOpen}
         checked={paymentType}
+        handleFormSubmit={handleFormSubmit}
         handleInputChange={handleFormInputChange}
         handlePaymentTypeChange={handleFormPaymentTypeChange}
       />
