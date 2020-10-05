@@ -6,7 +6,7 @@ interface ICard {
   cvv2: number,
   expiration_month: number,
   expiration_year: number,
-  address: IAddress,
+  address?: IAddress,
 }
 
 export default ICard
