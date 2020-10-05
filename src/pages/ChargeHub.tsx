@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { removeStoredAuthToken } from "shared/utils/authToken"
 
 import { TransactionModal } from "components/molecules/TransactionModal"
 import { PageWrapper } from "components/atoms/PageWrapper"
@@ -10,7 +9,6 @@ const ChargeHub = () => {
 
   const openPaymentModal = () => {
     setModalOpen(!modalOpen)
-    removeStoredAuthToken()
   }
 
   return (
