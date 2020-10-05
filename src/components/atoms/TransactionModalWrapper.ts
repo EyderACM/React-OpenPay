@@ -13,7 +13,7 @@ export const TransactionModalWrapper = styled.div<ITransactionModalWrapper>`
   height: ${pixelToRem(550)};
   opacity: ${({display}) => !display ? '0' : '1'};
   position: absolute;
-  transition: .3s all;
+  transition: .4s all;
   visibility: ${({display}) => !display ? 'hidden' : 'visible'};
   width: ${pixelToRem(1000)};
 `
