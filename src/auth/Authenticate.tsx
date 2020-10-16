@@ -14,8 +14,7 @@ const Authenticate = () => {
       try {
         const authToken = OpenPayM.deviceData.setup("form-charge")
         storeAuthToken(authToken)
-        toast.success("Autenticado correctamente")
-        history.push("/charge")
+        toast.success("Autenticado correctamente")    
       } catch (error) {
         toast.error("Fallo en la autenticación")
         alert("there was an error")
@@ -25,6 +24,7 @@ const Authenticate = () => {
     if (!getStoredAuthToken()) {
       createSession()
     }
+    history.push("/charge")
   }, [history])
 
   return <PageLoader />

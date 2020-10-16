@@ -62,8 +62,10 @@ const ChargeHub = () => {
       formData,
       (res: any) => {
         handleTokenCreation(res)
-      },
-      tokenFailedHandler
+      }, (err: any) => {
+        console.log(err)
+        tokenFailedHandler()
+      }
     )
   }
 
@@ -82,8 +84,10 @@ const ChargeHub = () => {
       () =>
         succesfulPayment(() => {
           setModalOpen(false)
-        }),
-      failedPayment
+        }), (err: any) => {
+          console.log(err)
+          failedPayment()
+        }
     )
   }
 
