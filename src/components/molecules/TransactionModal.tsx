@@ -73,7 +73,7 @@ export const TransactionModal = ({
           </PaymentTypeContainer>
           <form onSubmit={handleFormSubmit}>
             <Column>
-              Nombre del titular
+              <p>Nombre del titular</p>
               <input
                 type="text"
                 placeholder="Tu nombre"
@@ -82,7 +82,7 @@ export const TransactionModal = ({
               />
             </Column>
             <Column>
-              Número de tarjeta
+              <p>Número de tarjeta</p>
               <input
                 pattern="[0-9]+"
                 maxLength={19}
@@ -95,7 +95,7 @@ export const TransactionModal = ({
             <Column>
               <Row>
                 <Column>
-                  Fecha de expiración
+                  <p>Fecha de expiración</p>
                   <Row>
                     <ShortInput
                       maxLength={2}
@@ -116,7 +116,7 @@ export const TransactionModal = ({
                   </Row>
                 </Column>
                 <Column>
-                  CVC/CVV
+                  <p>CVC/CVV</p>
                   <input
                     maxLength={3}
                     type="text"

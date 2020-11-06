@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import { BACKGROUND } from 'shared/constants/colors'
+import { BACKGROUND, BLACK } from 'shared/constants/colors'
 
 export default createGlobalStyle`
   body {
@@ -26,5 +26,9 @@ export default createGlobalStyle`
   /* Firefox */
   input[type=number] {
     -moz-appearance: textfield;
+  }
+  p{
+    color: ${BLACK};
+    margin: 0;
   }
 `

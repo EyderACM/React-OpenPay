@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { WHITE } from 'shared/constants/colors'
+import { GRAY_GUAPO } from 'shared/constants/colors'
 import { pixelToRem } from 'shared/utils/pixelToRem'
 
 interface ITransactionModalWrapper {
@@ -8,7 +8,7 @@ interface ITransactionModalWrapper {
 
 export const TransactionModalWrapper = styled.div<ITransactionModalWrapper>`
   align-self: center;
-  background: ${WHITE};
+  background: ${GRAY_GUAPO};
   border-radius: ${pixelToRem(15)};
   height: ${pixelToRem(550)};
   opacity: ${({displayModal}) => !displayModal ? '0' : '1'};
