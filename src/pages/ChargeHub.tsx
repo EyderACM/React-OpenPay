@@ -1,36 +1,30 @@
-import React, { useState } from "react"
-import PaymentService from "services/PaymentService"
-import TokenService from "services/TokenService"
+import React, { useState } from 'react'
+import PaymentService from 'services/PaymentService'
+import TokenService from 'services/TokenService'
 
-import EPaymentTypes from "interfaces/EPaymentTypes"
-import toast from "shared/utils/toast"
-import { chargeFormValidator } from "shared/utils/formValidator"
+import EPaymentTypes from 'interfaces/EPaymentTypes'
+import toast from 'shared/utils/toast'
+import { chargeFormValidator } from 'shared/utils/formValidator'
 import {
   tokenGeneratedHandler,
   tokenFailedHandler,
   succesfulPayment,
   failedPayment,
-} from "shared/utils/errorHandler"
-import {
-  auctionDetails,
-  defaultPaymentDetails,
-} from "shared/utils/paymentDetails"
-import {
-  getStoredAuthToken,
-  removeStoredAuthToken,
-} from "shared/utils/authToken"
+} from 'shared/utils/errorHandler'
+import { auctionDetails, defaultPaymentDetails } from 'shared/utils/paymentDetails'
+import { getStoredAuthToken, removeStoredAuthToken } from 'shared/utils/authToken'
 
-import { TransactionModal } from "components/molecules/TransactionModal"
-import { PageWrapper } from "components/atoms/PageWrapper"
-import { ActionButton } from "components/atoms/ActionButton"
-import ICard from "interfaces/ICard"
+import { TransactionModal } from 'components/molecules/TransactionModal'
+import { PageWrapper } from 'components/atoms/PageWrapper'
+import { ActionButton } from 'components/atoms/ActionButton'
+import ICard from 'interfaces/ICard'
 
 const ChargeHub = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const [transactionData] = useState(auctionDetails({}))
   const [paymentType, setPaymentType] = useState(EPaymentTypes.CREDIT_CARD)
   const [formData, setformData] = useState<ICard>({
-    holder_name: "",
+    holder_name: '',
     expiration_month: 0,
     expiration_year: 0,
     card_number: 0,
@@ -38,9 +32,7 @@ const ChargeHub = () => {
   })
 
   const determinePaymentType = (value: string) =>
-    value === EPaymentTypes.OXXO
-      ? EPaymentTypes.OXXO
-      : EPaymentTypes.CREDIT_CARD
+    value === EPaymentTypes.OXXO ? EPaymentTypes.OXXO : EPaymentTypes.CREDIT_CARD
 
   const handleFormInputChange = (event: any) => {
     setformData({
@@ -57,12 +49,13 @@ const ChargeHub = () => {
       })
       return
     }
-    toast.success("Datos correctos")
+    toast.success('Datos correctos')
     TokenService.generateNewToken(
       formData,
       (res: any) => {
         handleTokenCreation(res)
-      }, (err: any) => {
+      },
+      (err: any) => {
         console.log(err)
         tokenFailedHandler()
       }
@@ -74,20 +67,20 @@ const ChargeHub = () => {
     const chargeData = {
       source_id: res.data.id,
       ...defaultPaymentDetails(
-        formData.holder_name.split(" ")[0],
-        formData.holder_name.split(" ")[2]
+        formData.holder_name.split(' ')[0],
+        formData.holder_name.split(' ')[2]
       ),
     }
-    removeStoredAuthToken()
     PaymentService.makePayment(
       chargeData,
       () =>
         succesfulPayment(() => {
           setModalOpen(false)
-        }), (err: any) => {
-          console.log(err)
-          failedPayment()
-        }
+        }),
+      (err: any) => {
+        console.log(err)
+        failedPayment()
+      }
     )
   }
 
@@ -97,7 +90,7 @@ const ChargeHub = () => {
 
   const openPaymentModal = () => {
     if (!getStoredAuthToken()) {
-      toast.error("No estás auténticado")
+      toast.error('No estás auténticado')
       return
     }
     setModalOpen(!modalOpen)
@@ -105,7 +98,9 @@ const ChargeHub = () => {
 
   return (
     <PageWrapper fullScreen justify>
-      <ActionButton onClick={openPaymentModal}>Comprar</ActionButton>
+      <ActionButton id='purchase_button' onClick={openPaymentModal}>
+        Comprar
+      </ActionButton>
       <TransactionModal
         visible={modalOpen}
         checked={paymentType}

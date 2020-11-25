@@ -1,24 +1,24 @@
-import React from "react"
-import oxxoLogo from "img/oxxo-logo.svg"
-import creditCards from "img/cards.png"
-import EPaymentTypes from "interfaces/EPaymentTypes"
+import React from 'react'
+import oxxoLogo from 'img/oxxo-logo.svg'
+import creditCards from 'img/cards.png'
+import EPaymentTypes from 'interfaces/EPaymentTypes'
 
-import { TransactionModalContainer } from "../atoms/TransactionModalContainer"
-import { TransactionModalWrapper } from "../atoms/TransactionModalWrapper"
-import { PaymentTypeContainer } from "../atoms/PaymentTypeContainer"
-import { RadioButtonWrapper } from "../atoms/RadioButtonWrapper"
-import { DetailDescription } from "../atoms/DetailDescription"
-import { DetailWrapper } from "../atoms/DetailWrapper"
-import { DetailSection } from "../atoms/DetailSection"
-import { PaymentButton } from "../atoms/PaymentButton"
-import { ResizableImg } from "../atoms/ResizableImg"
-import { FormWrapper } from "../atoms/FormWrapper"
-import { ShortInput } from "../atoms/ShortInput"
-import { DetailText } from "../atoms/DetailText"
-import { FormTitle } from "../atoms/FormTitle"
-import { FormInput } from "../atoms/FormInput"
-import { Column } from "../tools/Column"
-import { Row } from "../tools/Row"
+import { TransactionModalContainer } from '../atoms/TransactionModalContainer'
+import { TransactionModalWrapper } from '../atoms/TransactionModalWrapper'
+import { PaymentTypeContainer } from '../atoms/PaymentTypeContainer'
+import { RadioButtonWrapper } from '../atoms/RadioButtonWrapper'
+import { DetailDescription } from '../atoms/DetailDescription'
+import { DetailWrapper } from '../atoms/DetailWrapper'
+import { DetailSection } from '../atoms/DetailSection'
+import { PaymentButton } from '../atoms/PaymentButton'
+import { ResizableImg } from '../atoms/ResizableImg'
+import { FormWrapper } from '../atoms/FormWrapper'
+import { ShortInput } from '../atoms/ShortInput'
+import { DetailText } from '../atoms/DetailText'
+import { FormTitle } from '../atoms/FormTitle'
+import { FormInput } from '../atoms/FormInput'
+import { Column } from '../tools/Column'
+import { Row } from '../tools/Row'
 
 interface ITransactionModal {
   visible: boolean
@@ -47,27 +47,23 @@ export const TransactionModal = ({
               <FormInput
                 onChange={handlePaymentTypeChange}
                 checked={checked === EPaymentTypes.OXXO}
-                type="radio"
-                value="oxxo"
-                name="payment"
+                type='radio'
+                value='oxxo'
+                name='payment'
               />
-              <ResizableImg src={oxxoLogo} alt="oxxo logo" width={40} />
+              <ResizableImg src={oxxoLogo} alt='oxxo logo' width={40} />
             </RadioButtonWrapper>
             <RadioButtonWrapper>
               <FormInput
                 onChange={handlePaymentTypeChange}
                 checked={checked === EPaymentTypes.CREDIT_CARD}
-                type="radio"
-                value="creditCard"
-                name="payment"
+                type='radio'
+                value='creditCard'
+                name='payment'
               />
               <Row>
                 <p>Tarjeta de Crédito o Débito</p>
-                <ResizableImg
-                  src={creditCards}
-                  alt="credit card logos"
-                  height={20}
-                />
+                <ResizableImg src={creditCards} alt='credit card logos' height={20} />
               </Row>
             </RadioButtonWrapper>
           </PaymentTypeContainer>
@@ -75,20 +71,22 @@ export const TransactionModal = ({
             <Column>
               <p>Nombre del titular</p>
               <input
-                type="text"
-                placeholder="Tu nombre"
-                name="holder_name"
+                id='owner_name'
+                type='text'
+                placeholder='Tu nombre'
+                name='holder_name'
                 onChange={(e) => handleInputChange(e)}
               />
             </Column>
             <Column>
               <p>Número de tarjeta</p>
               <input
-                pattern="[0-9]+"
+                id='card_number'
+                pattern='[0-9]+'
                 maxLength={19}
-                type="text"
-                placeholder="0000 0000 0000 0000"
-                name="card_number"
+                type='text'
+                placeholder='0000 0000 0000 0000'
+                name='card_number'
                 onChange={(e) => handleInputChange(e)}
               />
             </Column>
@@ -98,18 +96,20 @@ export const TransactionModal = ({
                   <p>Fecha de expiración</p>
                   <Row>
                     <ShortInput
+                      id='expiration_date-month'
                       maxLength={2}
-                      type="text"
-                      placeholder="00"
-                      name="expiration_month"
+                      type='text'
+                      placeholder='00'
+                      name='expiration_month'
                       width={40}
                       onChange={(e) => handleInputChange(e)}
                     />
                     <ShortInput
+                      id='expiration_date-year'
                       maxLength={4}
-                      type="text"
-                      placeholder="00"
-                      name="expiration_year"
+                      type='text'
+                      placeholder='00'
+                      name='expiration_year'
                       width={40}
                       onChange={(e) => handleInputChange(e)}
                     />
@@ -118,10 +118,11 @@ export const TransactionModal = ({
                 <Column>
                   <p>CVC/CVV</p>
                   <input
+                    id='cvc'
                     maxLength={3}
-                    type="text"
-                    placeholder="000"
-                    name="cvv2"
+                    type='text'
+                    placeholder='000'
+                    name='cvv2'
                     onChange={(e) => handleInputChange(e)}
                   />
                 </Column>
@@ -138,7 +139,9 @@ export const TransactionModal = ({
               </DetailSection>
             )
           })}
-          <PaymentButton onClick={handleFormSubmit}>Pagar</PaymentButton>
+          <PaymentButton id='payment_button' onClick={handleFormSubmit}>
+            Pagar
+          </PaymentButton>
         </DetailWrapper>
       </TransactionModalContainer>
     </TransactionModalWrapper>
